@@ -27,6 +27,13 @@ function fillArray() {
   }
 }
 
+function init() {
+  fillArray();
+  window.setInterval(updateGrid, 200);
+  const startBtn = document.getElementById("start");
+  startBtn.removeEventListener("click", init);
+}
+
 function countNeighbors(col, row) {
   let count = 0;
   if (col - 1 >= 0) {
@@ -89,5 +96,9 @@ function getNextGen() {
   return newGrid;
 }
 
-fillArray();
-window.setInterval(updateGrid, 200);
+function setControls() {
+  const startBtn = document.getElementById("start");
+  startBtn.addEventListener("click", init);
+}
+
+setControls();
