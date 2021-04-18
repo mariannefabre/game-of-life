@@ -27,13 +27,6 @@ function fillArray() {
   }
 }
 
-function init() {
-  fillArray();
-  window.setInterval(updateGrid, 200);
-  const startBtn = document.getElementById("start");
-  startBtn.removeEventListener("click", init);
-}
-
 function countNeighbors(col, row) {
   let count = 0;
   if (col - 1 >= 0) {
@@ -96,9 +89,23 @@ function getNextGen() {
   return newGrid;
 }
 
-function setControls() {
+function init() {
+  let interval;
   const startBtn = document.getElementById("start");
-  startBtn.addEventListener("click", init);
+  startBtn.addEventListener("click", start);
+  const pauseBtn = document.getElementById("pause");
+  pauseBtn.addEventListener("click", pause);
+
+  function start() {
+    if (!grid) fillArray();
+    interval = window.setInterval(updateGrid, 200);
+    startBtn.removeEventListener("click", start);
+  }
+
+  function pause() {
+    clearInterval(interval);
+    startBtn.addEventListener("click", start);
+  }
 }
 
-setControls();
+init();
