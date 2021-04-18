@@ -16,13 +16,23 @@ function create2DArray() {
 }
 
 // Initialize grid with random structures
-function fillArray() {
+function drawRandomArray() {
   grid = create2DArray();
   console.log(grid);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       grid[i][j] = Math.floor(Math.random() * 2);
       drawCell(i, j);
+    }
+  }
+}
+function drawEmptyGrid() {
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      ctx.fillStyle = deadColor;
+      ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+      ctx.strokeStyle = "grey";
+      ctx.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
     }
   }
 }
@@ -95,9 +105,11 @@ function init() {
   startBtn.addEventListener("click", start);
   const pauseBtn = document.getElementById("pause");
   pauseBtn.addEventListener("click", pause);
+  const resetBtn = document.getElementById("reset");
+  resetBtn.addEventListener("click", reset);
 
   function start() {
-    if (!grid) fillArray();
+    if (!grid) drawRandomArray();
     interval = window.setInterval(updateGrid, 200);
     startBtn.removeEventListener("click", start);
   }
@@ -105,6 +117,11 @@ function init() {
   function pause() {
     clearInterval(interval);
     startBtn.addEventListener("click", start);
+  }
+  function reset() {
+    pause();
+    grid = null;
+    drawEmptyGrid();
   }
 }
 
