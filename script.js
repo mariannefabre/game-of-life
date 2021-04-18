@@ -5,9 +5,6 @@ const ctx = canvas.getContext("2d");
 const cellSize = 20;
 const cols = Math.floor(canvas.width / cellSize);
 const rows = Math.floor(canvas.height / cellSize);
-console.log(cols);
-console.log(rows);
-let nbGen = 1;
 let grid;
 
 function create2DArray() {
