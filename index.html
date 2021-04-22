@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game of Life</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
   </head>
   <body>
-    <button id="start">start</button>
-    <button id="pause">pause</button>
-    <button id="reset">reset</button>
-    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <div class="buttons-container">
+      <button id="start">start</button>
+      <button id="pause">pause</button>
+      <button id="reset">reset</button>
+    </div>
+    <div class="canvas-container">
+      <canvas id="canvas" width="700" height="700"></canvas>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
