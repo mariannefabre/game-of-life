@@ -108,7 +108,6 @@ function init() {
   function start() {
     if (!grid) {
       grid = initRandomGrid(cols, rows);
-      // passing grid as an argument will only pass its value, not its reference!
       drawGrid(grid, cols, rows, ctx, cellSize);
     }
     interval = window.setInterval(() => {
