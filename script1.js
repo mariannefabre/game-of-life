@@ -110,7 +110,7 @@ function init() {
     }
     interval = window.setInterval(() => {
       grid = updateGrid(grid, cols, rows, ctx, cellSize);
-    }, 1000);
+    }, 300);
     startBtn.removeEventListener("click", start);
   }
   function pause() {
