@@ -26,7 +26,7 @@ function drawGrid(grid, cols, rows, ctx, cellSize) {
 }
 
 function drawCell(grid, col, row, ctx, cellSize) {
-  const aliveColor = "cornflowerblue";
+  const aliveColor = "#eceff1";
   const deadColor = "#7986cb";
   let color;
   if (!grid) {
@@ -36,8 +36,6 @@ function drawCell(grid, col, row, ctx, cellSize) {
   }
   ctx.fillStyle = color;
   ctx.fillRect(row * cellSize, col * cellSize, cellSize, cellSize);
-  ctx.strokeStyle = "lightgray";
-  ctx.strokeRect(row * cellSize, col * cellSize, cellSize, cellSize);
 }
 
 function getNextGen(grid, cols, rows) {
@@ -93,7 +91,7 @@ function updateGrid(grid, cols, rows, ctx, cellSize) {
 function init() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
-  const cellSize = 100;
+  const cellSize = 10;
   const cols = Math.floor(canvas.width / cellSize);
   const rows = Math.floor(canvas.height / cellSize);
   let grid = null;
