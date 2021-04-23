@@ -27,7 +27,7 @@ function drawGrid(grid, cols, rows, ctx, cellSize) {
 
 function drawCell(grid, col, row, ctx, cellSize) {
   const aliveColor = "cornflowerblue";
-  const deadColor = "white";
+  const deadColor = "#7986cb";
   let color;
   if (!grid) {
     color = deadColor;
@@ -85,8 +85,9 @@ function countNeighbors(grid, col, row, cols, rows) {
 }
 
 function updateGrid(grid, cols, rows, ctx, cellSize) {
-  grid = getNextGen(grid, cols, rows);
-  drawGrid(grid, cols, rows, ctx, cellSize);
+  let nextGrid = getNextGen(grid, cols, rows);
+  drawGrid(nextGrid, cols, rows, ctx, cellSize);
+  return nextGrid;
 }
 
 function init() {
@@ -111,8 +112,8 @@ function init() {
       drawGrid(grid, cols, rows, ctx, cellSize);
     }
     interval = window.setInterval(() => {
-      updateGrid(grid, cols, rows, ctx, cellSize);
-    }, 2000);
+      grid = updateGrid(grid, cols, rows, ctx, cellSize);
+    }, 1000);
     startBtn.removeEventListener("click", start);
   }
   function pause() {
@@ -121,8 +122,7 @@ function init() {
   }
   function reset() {
     pause();
-    grid = null;
-    initRandomGrid(cols, rows);
+    grid = initRandomGrid(cols, rows);
     drawGrid(grid, cols, rows, ctx, cellSize);
   }
 }
